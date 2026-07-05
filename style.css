@@ -1,0 +1,590 @@
+/* ==========================================
+   Realistic Butterfly Scene
+   style.css - Part 1
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* Sky */
+
+body{
+    background:
+    radial-gradient(circle at top,#ffffff 0%,#dff7ff 20%,#87ceeb 60%,#4ea3ff 100%);
+}
+
+/* Main Scene */
+
+.scene{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* Sun */
+
+.sun{
+    position:absolute;
+    width:160px;
+    height:160px;
+
+    right:80px;
+    top:60px;
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,#fff9c4,#ffd54f,#ff9800);
+
+    box-shadow:
+    0 0 30px #ffd54f,
+    0 0 80px #ffd54f,
+    0 0 150px rgba(255,220,80,.8);
+
+    animation:sunGlow 5s ease-in-out infinite;
+}
+
+@keyframes sunGlow{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* Clouds */
+
+.cloud{
+
+position:absolute;
+
+background:white;
+
+border-radius:100px;
+
+opacity:.9;
+
+filter:blur(1px);
+
+}
+
+.cloud::before,
+.cloud::after{
+
+content:"";
+
+position:absolute;
+
+background:white;
+
+border-radius:50%;
+
+}
+
+.cloud1{
+
+width:180px;
+height:60px;
+
+left:-220px;
+top:100px;
+
+animation:cloudMove1 55s linear infinite;
+
+}
+
+.cloud1::before{
+
+width:70px;
+height:70px;
+
+left:20px;
+top:-25px;
+
+}
+
+.cloud1::after{
+
+width:90px;
+height:90px;
+
+right:25px;
+top:-40px;
+
+}
+
+.cloud2{
+
+width:220px;
+height:70px;
+
+left:-300px;
+top:220px;
+
+animation:cloudMove2 75s linear infinite;
+
+}
+
+.cloud2::before{
+
+width:80px;
+height:80px;
+
+left:40px;
+top:-30px;
+
+}
+
+.cloud2::after{
+
+width:100px;
+height:100px;
+
+right:30px;
+top:-40px;
+
+}
+
+@keyframes cloudMove1{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+100%{
+
+transform:translateX(1600px);
+
+}
+
+}
+
+@keyframes cloudMove2{
+
+0%{
+
+transform:translateX(0);
+
+}
+
+100%{
+
+transform:translateX(1800px);
+
+}
+
+}
+
+/* Grass */
+
+.grass{
+
+position:absolute;
+
+bottom:0;
+
+width:100%;
+
+height:170px;
+
+background:
+linear-gradient(
+to top,
+#1b5e20,
+#2e7d32,
+#43a047,
+#66bb6a
+);
+
+}
+
+/* Flowers */
+
+.flower{
+
+position:absolute;
+
+bottom:140px;
+
+width:12px;
+
+height:90px;
+
+background:#2e7d32;
+
+transform-origin:bottom center;
+
+animation:sway 3s ease-in-out infinite;
+
+}
+
+.flower::before{
+
+content:"";
+
+position:absolute;
+
+width:28px;
+
+height:28px;
+
+background:#ff4da6;
+
+border-radius:50%;
+
+top:-18px;
+
+left:-8px;
+
+box-shadow:
+
+0 -10px #ff80bf,
+10px 0 #ff66b3,
+-10px 0 #ff66b3,
+0 10px #ff99cc;
+
+}
+
+.flower1{
+
+left:20%;
+
+animation-delay:0s;
+
+}
+
+.flower2{
+
+left:50%;
+
+height:110px;
+
+animation-delay:.8s;
+
+}
+
+.flower3{
+
+left:80%;
+
+height:95px;
+
+animation-delay:1.5s;
+
+}
+
+@keyframes sway{
+
+0%{
+
+transform:rotate(-4deg);
+
+}
+
+50%{
+
+transform:rotate(5deg);
+
+}
+
+100%{
+
+transform:rotate(-4deg);
+
+}
+
+}
+/* ==========================================
+   Butterfly - Part 2
+========================================== */
+
+.butterfly{
+    position:absolute;
+    width:160px;
+    height:120px;
+    left:15%;
+    top:45%;
+    transform:translate(-50%,-50%);
+    z-index:100;
+    pointer-events:none;
+    animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%{
+        transform:translate(-50%,-50%) translateY(0px);
+    }
+    50%{
+        transform:translate(-50%,-50%) translateY(-12px);
+    }
+    100%{
+        transform:translate(-50%,-50%) translateY(0px);
+    }
+}
+
+/* Body */
+
+.body{
+    position:absolute;
+    left:50%;
+    top:18px;
+    transform:translateX(-50%);
+    width:14px;
+    height:84px;
+    background:linear-gradient(#333,#111);
+    border-radius:20px;
+    z-index:5;
+    box-shadow:0 0 10px rgba(0,0,0,.4);
+}
+
+/* Antenna */
+
+.body::before,
+.body::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:28px;
+    background:#222;
+    top:-22px;
+}
+
+.body::before{
+    left:2px;
+    transform:rotate(-28deg);
+}
+
+.body::after{
+    right:2px;
+    transform:rotate(28deg);
+}
+
+/* Wings */
+
+.wing{
+    position:absolute;
+    width:76px;
+    height:98px;
+    overflow:hidden;
+}
+
+.left{
+    left:0;
+    top:8px;
+    transform-origin:right center;
+    animation:leftFlap .22s ease-in-out infinite alternate;
+}
+
+.right{
+    right:0;
+    top:8px;
+    transform-origin:left center;
+    animation:rightFlap .22s ease-in-out infinite alternate;
+}
+
+/* SVG Wing */
+
+.wing img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    filter:
+        drop-shadow(0 0 5px rgba(0,0,0,.25))
+        drop-shadow(0 0 12px rgba(255,180,0,.25));
+}
+
+.right img{
+    transform:scaleX(-1);
+}
+
+/* Wing Flapping */
+
+@keyframes leftFlap{
+    from{
+        transform:rotateY(0deg) rotate(-8deg);
+    }
+    to{
+        transform:rotateY(65deg) rotate(18deg);
+    }
+}
+
+@keyframes rightFlap{
+    from{
+        transform:rotateY(0deg) rotate(8deg);
+    }
+    to{
+        transform:rotateY(-65deg) rotate(-18deg);
+    }
+}
+
+/* Shadow */
+
+.butterfly::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-35px;
+    transform:translateX(-50%);
+    width:90px;
+    height:18px;
+    background:rgba(0,0,0,.18);
+    border-radius:50%;
+    filter:blur(8px);
+    animation:shadowMove 3s ease-in-out infinite;
+}
+
+@keyframes shadowMove{
+    0%{
+        transform:translateX(-50%) scale(1);
+        opacity:.22;
+    }
+    50%{
+        transform:translateX(-50%) scale(.8);
+        opacity:.12;
+    }
+    100%{
+        transform:translateX(-50%) scale(1);
+        opacity:.22;
+    }
+}
+/* ==========================================
+   style.css - Part 3 (Final)
+========================================== */
+
+/* Butterfly Glow */
+
+.butterfly{
+    filter:
+        drop-shadow(0 8px 15px rgba(0,0,0,.25))
+        drop-shadow(0 0 15px rgba(255,180,0,.15));
+}
+
+/* Gentle Rotation */
+
+@keyframes butterflyTilt{
+    0%{
+        rotate:-2deg;
+    }
+    50%{
+        rotate:2deg;
+    }
+    100%{
+        rotate:-2deg;
+    }
+}
+
+.butterfly{
+    animation:
+        float 3s ease-in-out infinite,
+        butterflyTilt 2s ease-in-out infinite;
+}
+
+/* Flower Details */
+
+.flower::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:#ffd600;
+    border-radius:50%;
+    top:-9px;
+    left:1px;
+    z-index:2;
+}
+
+/* Grass Texture */
+
+.grass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0 4px,
+            rgba(255,255,255,.04) 4px 5px
+        );
+    opacity:.5;
+}
+
+/* Small Sparkles */
+
+.scene::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 2px);
+    background-size:120px 120px;
+    opacity:.15;
+    animation:twinkle 6s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes twinkle{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-20px);
+    }
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+.sun{
+    width:100px;
+    height:100px;
+    right:20px;
+    top:20px;
+}
+
+.butterfly{
+    transform:translate(-50%,-50%) scale(.8);
+}
+
+.grass{
+    height:130px;
+}
+
+}
+
+@media (max-width:480px){
+
+.butterfly{
+    transform:translate(-50%,-50%) scale(.65);
+}
+
+.flower{
+    display:none;
+}
+
+.cloud{
+    opacity:.8;
+}
+
+}
